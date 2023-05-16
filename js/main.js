@@ -92,7 +92,7 @@ posts.forEach((thisPost) =>
                </a>
            </div>
            <div class="likes__counter">
-               Piace a <b id="like-counter-1" class="js-likes-counter">${thisPost.likes}</b> persone
+               Piace a <b id="like-counter-${thisPost.id}" class="js-likes-counter">${thisPost.likes}</b> persone
            </div>
        </div>
    </div>
@@ -101,25 +101,32 @@ posts.forEach((thisPost) =>
 // Milestone 3 - Se clicchiamo sul tasto “Mi Piace” cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
 
 const buttonLike = document.querySelectorAll('.like-button');
-// seleziono il counter dei mi piace
-let likeCounter = (thisPost.likes);
-console.log(likeCounter);
 
-for (let i = 0; i < buttonLike.length; i++) {    
+
+for (let i = 0; i < buttonLike.length; i++) {   
+    
+    let postFinal = posts[i];
+    let likeCounter = document.getElementById(`like-counter-${postFinal.id}`);
 
     buttonLike[i].addEventListener("click", function() 
     {
         if (buttonLike[i].classList.contains('like-button--liked')) {
         buttonLike[i].classList.remove('like-button--liked');
-        } else {
-        buttonLike[i].classList.add('like-button--liked');
-        }
-    });
+        //decremento counter array
+        postFinal.likes--;
     
-  if (buttonLike[i].classList.contains('like-button--liked'))
-    {
-      likeCounter +1;
-    }
+        } 
+        else 
+        {
+            buttonLike[i].classList.add('like-button--liked');
+            //incremento counter array
+            postFinal.likes++;
+    
+        }
+         //incremento counter dom
+         likeCounter.innerHTML = postFinal.likes;
+    });   
+   
 }
 
 
@@ -127,5 +134,5 @@ for (let i = 0; i < buttonLike.length; i++) {
 
 
 
-
+// Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
     
