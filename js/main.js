@@ -101,22 +101,27 @@ posts.forEach((thisPost) =>
 // Milestone 3 - Se clicchiamo sul tasto “Mi Piace” cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
 
 const buttonLike = document.querySelectorAll('.like-button');
-let likeCounter = thisPost.likes;
+// seleziono il counter dei mi piace
+let likeCounter = (thisPost.likes);
+console.log(likeCounter);
 
 for (let i = 0; i < buttonLike.length; i++) {    
 
-    buttonLike[i].addEventListener("click", function() {
-    if (buttonLike[i].classList.contains('like-button--liked')) {
-      buttonLike[i].classList.remove('like-button--liked');
-    } else {
-      buttonLike[i].classList.add('like-button--liked');
-      
-      likeCounter++
-
-
+    buttonLike[i].addEventListener("click", function() 
+    {
+        if (buttonLike[i].classList.contains('like-button--liked')) {
+        buttonLike[i].classList.remove('like-button--liked');
+        } else {
+        buttonLike[i].classList.add('like-button--liked');
+        }
+    });
+    
+  if (buttonLike[i].classList.contains('like-button--liked'))
+    {
+      likeCounter +1;
     }
-  });
 }
+
 
 });
 
